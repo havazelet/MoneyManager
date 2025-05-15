@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Box,
   List,
@@ -10,51 +10,149 @@ import {
   Switch,
   FormControlLabel,
   Typography,
-  Divider
+  Divider,
+  Drawer,
+  IconButton,
+  useMediaQuery,
+  useTheme,
+  Tooltip,
 } from "@mui/material";
-import { useThemeContext } from "../../ThemeContext"; 
-import style from './SideNavBar.module.css'
+import MenuIcon from "@mui/icons-material/Menu";
+import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
+import ChevronRightIcon from "@mui/icons-material/ChevronRight";
+import { useThemeContext } from "../../ThemeContext";
 import { menuItems } from "./SideNavBar.config";
+import styles from "./SideNavBar.module.css";
+
+const DRAWER_WIDTH = 240;
+const MINI_DRAWER_WIDTH = 75;
 
 const SideNavBar = () => {
   const { mode, toggleTheme } = useThemeContext();
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const [miniVariant, setMiniVariant] = useState(false);
 
-  return (
-    <Box className={style.drawer}>
+  const handleDrawerToggle = () => {
+    if (isMobile) {
+      setMobileOpen(!mobileOpen);
+    } else {
+      setMiniVariant(!miniVariant);
+    }
+  };
+
+  const drawerContent = (
+    <>
       <Box>
         <Toolbar>
-          <Typography variant="h6" className={style.typographyHeader}>MONEY MANAGER</Typography>
+          <Typography
+            variant="h6"
+            className={`${styles.typographyHeader} ${
+              miniVariant ? styles.typographyMini : ""
+            }`}
+          >
+            {miniVariant ? "MM" : "MONEY MANAGER"}
+          </Typography>
         </Toolbar>
-        <Divider className={style.divider}/>
+
+        <Divider className={styles.divider} />
+
         <List>
           {menuItems.map((item) => (
             <ListItem disablePadding key={item.text}>
-              <ListItemButton>
-                <ListItemIcon className={style.listItemIcon}>{React.createElement(item.icon)}</ListItemIcon>
-                <ListItemText primary={item.text} />
-              </ListItemButton>
+              <Tooltip title={miniVariant ? item.text : ""} placement="right">
+                <ListItemButton
+                  className={miniVariant ? styles.centeredButton : ""}
+                >
+                  <ListItemIcon
+                    className={`${styles.listItemIcon} ${
+                      miniVariant ? styles.iconMini : ""
+                    }`}
+                  >
+                    {React.createElement(item.icon)}
+                  </ListItemIcon>
+                  {!miniVariant && <ListItemText primary={item.text} />}
+                </ListItemButton>
+              </Tooltip>
             </ListItem>
           ))}
         </List>
       </Box>
 
-      <Box sx={{ padding: 2 }}>
-        <FormControlLabel
-          control={
-            <Switch
-              checked={mode === "dark"}
-              onChange={toggleTheme}
-              className={style.switch}
-            />
-          }
-          label={
-            <Typography className={style.styleModeText}>
-              {mode === "dark" ? "Dark" : "Light"} Mode
-            </Typography>
-          }
-        />
+      <Box className={styles.bottomSection}>
+        {!miniVariant ? (
+          <FormControlLabel
+            control={
+              <Switch
+                checked={mode === "dark"}
+                onChange={toggleTheme}
+                className={styles.switch}
+              />
+            }
+            label={
+              <Typography className={styles.styleModeText}>
+                {mode === "dark" ? "Dark" : "Light"} Mode
+              </Typography>
+            }
+          />
+        ) : (
+          <Switch
+            checked={mode === "dark"}
+            onChange={toggleTheme}
+            className={styles.switch}
+          />
+        )}
       </Box>
-    </Box>
+    </>
+  );
+
+  return (
+    <>
+      {isMobile && (
+        <IconButton
+          color="inherit"
+          aria-label="open drawer"
+          edge="start"
+          onClick={handleDrawerToggle}
+          className={styles.mobileMenuButton}
+        >
+          <MenuIcon />
+        </IconButton>
+      )}
+
+      {isMobile ? (
+        <Drawer
+          variant="temporary"
+          open={mobileOpen}
+          onClose={handleDrawerToggle}
+          ModalProps={{ keepMounted: true }}
+          classes={{ paper: styles.mobileDrawer }}
+        >
+          {drawerContent}
+        </Drawer>
+      ) : (
+        <Box component="nav" className={styles.navContainer}>
+          <Box
+            className={styles.drawer}
+            style={{ width: miniVariant ? MINI_DRAWER_WIDTH : DRAWER_WIDTH }}
+          >
+            <IconButton
+              onClick={handleDrawerToggle}
+              className={styles.toggleButton}
+            >
+              {miniVariant ? (
+                <ChevronRightIcon fontSize="small" />
+              ) : (
+                <ChevronLeftIcon fontSize="small" />
+              )}
+            </IconButton>
+
+            {drawerContent}
+          </Box>
+        </Box>
+      )}
+    </>
   );
 };
 

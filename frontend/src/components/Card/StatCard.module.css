@@ -1,0 +1,57 @@
+.card {
+    border-radius: 16px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+    padding: 16px;
+  }
+  
+  .header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 16px;
+  }
+  
+  .avatar {
+    margin-right: 16px;
+  }
+  
+  .title {
+    color: rgba(0, 0, 0, 0.6); 
+  }
+  
+  .value {
+    font-weight: 700;
+  }
+  
+  .changeSection {
+    display: flex;
+    align-items: center;
+    margin-top: 8px;
+  }
+  
+  .changeBox {
+    display: flex;
+    align-items: center;
+    padding: 4px 8px;
+    border-radius: 8px;
+    margin-right: 8px;
+  }
+  
+  .positive {
+    background-color: #e5fbef;
+    color: #34c77b;
+  }
+  
+  .negative {
+    background-color: #fdecea;
+    color: #f44336;
+  }
+  
+  .changeValue {
+    font-weight: 500;
+    margin-left: 4px;
+  }
+  
+  .description {
+    color: rgba(0, 0, 0, 0.6); 
+  }
+  
