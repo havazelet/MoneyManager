@@ -1,0 +1,13 @@
+
+.container {
+    padding: 16px;
+}
+  
+.gridItem {
+    transition: transform 0.3s ease;
+}
+
+.gridItem:hover {
+    transform: scale(1.02);
+}
+  

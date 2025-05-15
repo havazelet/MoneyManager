@@ -1,5 +1,4 @@
 .drawer {
-    width: 240px;
     height: calc(100vh - 32px);
     margin: 16px;
     background-color: #203838;
@@ -9,33 +8,93 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-}
-
-.typographyHeader {
+    position: relative;
+    transition: width 0.3s ease-in-out;
+  }
+  
+  .typographyHeader {
     font-weight: bold;
     color: white;
     margin: 36px 0px 26px 0px;
-}
-
-.divider {
-    background-color: rgba(255,255,255,0.2);
+  }
+  
+  .typographyMini {
+    font-size: 1rem;
+    display: block;
+  }
+  
+  .divider {
+    background-color: rgba(255, 255, 255, 0.2);
     margin: 0px 16px 24px 16px;
-}
-
-.listItemIcon {
+  }
+  
+  .listItemIcon {
     min-width: 32px;
-}
-
-
-.listItemIcon svg {
+  }
+  
+  .listItemIcon svg {
     color: white;
     font-size: 1.2rem !important;
-}
-
-.switch {
-    color: white; 
-}
-
-.styleModeText {
+  }
+  
+  .switch {
     color: white;
-}
+  }
+  
+  .styleModeText {
+    color: white;
+  }
+  
+  .bottomSection {
+    padding: 16px;
+  }
+  
+  .centeredButton {
+    justify-content: center;
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
+  
+  .iconMini {
+    min-width: auto;
+    margin-right: 0;
+  }
+  
+  .mobileMenuButton {
+    margin-right: 16px;
+    display: block;
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    z-index: 1200;
+  }
+  
+  .mobileDrawer {
+    background-color: #203838 !important;
+    box-sizing: border-box;
+    margin: 16px;
+    border-radius: 16px;
+    height: calc(100vh - 32px);
+  }
+  
+  .navContainer {
+    flex-shrink: 0;
+  }
+  
+  .toggleButton {
+    position: absolute;
+    right: -12px;
+    top: 766px;
+    background-color: #203838;
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    width: 24px;
+    height: 24px;
+    z-index: 1300;
+    transition: background-color 0.3s;
+  }
+  
+  .toggleButton:hover {
+    background-color: #2a4747;
+  }
+  
