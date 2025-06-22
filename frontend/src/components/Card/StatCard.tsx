@@ -5,8 +5,6 @@ import {
   Box,
   Avatar,
 } from "@mui/material";
-import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
-import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 import { SvgIconComponent } from "@mui/icons-material";
 
 interface StatCardProps {
@@ -56,11 +54,6 @@ const StatCard = ({
             borderRadius={1}
             mr={1}
           >
-            {isPositive ? (
-              <ArrowUpwardIcon fontSize="small" />
-            ) : (
-              <ArrowDownwardIcon fontSize="small" />
-            )}
             <Typography variant="body2" fontWeight={500} ml={0.5}>
               {isPositive ? "+" : ""}
               {Math.abs(change).toFixed(2)}%

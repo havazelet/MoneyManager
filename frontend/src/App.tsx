@@ -1,24 +1,40 @@
-import './App.css';
-import SideNavBar from './components/SideNavBar/SideNavBar';
-import Dashboard from './pages/Dashboard/Dashboard';
-import { Box, CssBaseline } from '@mui/material';
+import SideNavBar from "./components/SideNavBar/SideNavBar";
+import Dashboard from "./pages/Dashboard/Dashboard";
+import Login from "./pages/Login/Login";
+import { CssBaseline, Box } from "@mui/material";
+import { BrowserRouter as Router, Routes, Route, Outlet } from "react-router-dom";
+import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
+import OAuthCallback from "./components/OAuthCallback/OAuthCallback";
+import Manage from "./pages/Manage/BudgetPage";
+import styles from "./App.module.css"
 
 function App() {
   return (
-    <Box sx={{ display: 'flex' }}>
+    <Router>
       <CssBaseline />
-      <SideNavBar />
-      <Box 
-        component="main" 
-        sx={{ 
-          flexGrow: 1, 
-          padding: { xs: 1, sm: 2 },
-          marginLeft: { xs: 0, sm: 0 }
-        }}
-      >
-        <Dashboard />
+      <Box className="app-root">
+        <Routes> 
+          <Route path="/login" element={<Login />} />
+          <Route path="/auth/callback" element={<OAuthCallback />} />
+          <Route element={<ProtectedRoute />}>
+            <Route
+              element={
+                <Box className={styles.appLayout}>
+                  <SideNavBar />
+                  <Box component="main" className={styles.mainContent}>
+                    <Outlet />
+                  </Box>
+                </Box>
+              }
+            >
+              <Route path="*" element={<Dashboard/>} />
+              <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/manage-budget" element={<Manage />} />
+            </Route>
+          </Route>
+        </Routes>
       </Box>
-    </Box>
+    </Router>
   );
 }
 

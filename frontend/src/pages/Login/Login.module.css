@@ -1,0 +1,52 @@
+.container {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #203838;
+    padding: 16px;
+  }
+  
+  .paper {
+    padding: 24px 48px; 
+    width: 100%;
+    max-width: 420px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.3);
+    background-color: #ffffff;
+    border-radius: 16px;
+  }
+  
+  .headerStack {
+    text-align: center;
+    gap: 8px;
+  }
+  
+  .loginButton {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    width: 100%;
+    background-color: rgb(17, 50, 46);
+  }
+  
+  .divider {
+    margin: 0;
+  }
+  
+  .socialStack {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+  }
+  
+  .iconButton {
+    border: 1px solid #e0e0e0;
+    border-color: var(--mui-divider, #e0e0e0);
+  }
+  
+  .footerText {
+    text-align: center;
+  }
+  

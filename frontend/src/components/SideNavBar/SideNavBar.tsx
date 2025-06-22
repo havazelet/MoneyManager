@@ -23,6 +23,7 @@ import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import { useThemeContext } from "../../ThemeContext";
 import { menuItems } from "./SideNavBar.config";
 import styles from "./SideNavBar.module.css";
+import { useNavigate } from "react-router-dom";
 
 const DRAWER_WIDTH = 240;
 const MINI_DRAWER_WIDTH = 75;
@@ -33,6 +34,7 @@ const SideNavBar = () => {
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const [mobileOpen, setMobileOpen] = useState(false);
   const [miniVariant, setMiniVariant] = useState(false);
+  const navigate = useNavigate();
 
   const handleDrawerToggle = () => {
     if (isMobile) {
@@ -60,7 +62,7 @@ const SideNavBar = () => {
 
         <List>
           {menuItems.map((item) => (
-            <ListItem disablePadding key={item.text}>
+            <ListItem disablePadding key={item.text} onClick={() => navigate(item.path)}>
               <Tooltip title={miniVariant ? item.text : ""} placement="right">
                 <ListItemButton
                   className={miniVariant ? styles.centeredButton : ""}

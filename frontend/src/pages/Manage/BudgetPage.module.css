@@ -1,0 +1,54 @@
+.container {
+    height: calc(100vh - 42px);
+    background-color: #ffffff;
+    color: rgb(23, 23, 23);
+    border-radius: 8px;
+    box-sizing: border-box;
+    padding: 32px;
+    overflow-y: auto;
+  }
+  
+  .typographyHeader {
+    font-weight: bold;
+    font-size: 2rem;
+    color: rgb(24, 24, 24);
+    margin-bottom: 36px;
+  }
+
+  .card {
+    border-radius: 16px;
+    background-color: white;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    padding: 24px;
+    margin-top: 24px;
+    color: rgb(16, 16, 16);
+  }
+  
+  .label {
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin-bottom: 4px;
+  }
+
+  .saveButton {
+    margin-top: 24px;
+    background-color: #243f31 !important;
+    color: #ffffff !important;
+    padding: 12px 24px;
+    font-weight: bold;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .saveButton:hover {
+    background-color: #252e29 !important;
+  }
+  
+    
+  .sectionTitle {
+    font-weight: 600;
+    font-size: 1.3rem;
+    color: rgb(32, 32, 32);
+    margin-bottom: 16px;
+  }
+  
